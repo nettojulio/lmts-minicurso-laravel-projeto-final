@@ -1,0 +1,18 @@
+version: '3.9'
+services:
+  task-manager-database:
+    container_name: task-manager-database
+    image: postgres:15.6
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    ports:
+      - "5432:5432"
+    restart: on-failure
+    networks:
+      - app-private-network
+
+networks:
+  app-private-network:
+    driver: bridge
+    name: app-private-network
